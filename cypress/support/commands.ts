@@ -1,4 +1,11 @@
 /// <reference types="cypress" />
+
+import { CheckoutPageStepOne } from "../pages/CheckoutPageStepOne";
+import { LoginPage } from "../pages/LoginPage";
+
+const checkoutPageStepOne = new CheckoutPageStepOne();
+const loginPage= new LoginPage();
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -39,14 +46,25 @@ declare global {
   namespace Cypress {
     interface Chainable {
       login(username: string, password: string): Chainable<void>;
+      fillStepOneCheckout(firstName:string, lastName:string,postalCode:string): Chainable<void>;
+      
     }
   }
 }
 Cypress.Commands.add('login',(username:string, password:string)=>{
 
-    cy.get('#user-name').type(username)
-    cy.get('#password').type(password)
-    cy.get('#login-button').click()
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    loginPage.username.type(username);
+    loginPage.password.type(password,{log:false});
+    loginPage.loginButton.click();
+})
+
+Cypress.Commands.add('fillStepOneCheckout',(firstName:string, lastName:string,postalCode:string) =>{
+
+  checkoutPageStepOne.firstNameInput.type(firstName);
+  checkoutPageStepOne.lastNameInput.type(lastName);
+  checkoutPageStepOne.postalCodeInput.type(postalCode);
 })
 
 export{};

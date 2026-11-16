@@ -32,6 +32,12 @@
 
         return cy.get('[id^="remove-"]');
     }
+    
+    addFirstNProducts(count: number) {
+    for (let i = 0; i < count; i++) {
+        this.addToCartButtons.eq(0).click();
+    }
+}
 
 
 
