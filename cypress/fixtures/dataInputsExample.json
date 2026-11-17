@@ -1,0 +1,11 @@
+{
+  "baseURL":"https://www.saucedemo.com/",
+  "standardUser":"YOUR_STANDARD_USER",
+  "problemUser":"YOUR_PROBLEM_USER",
+  "lockedUser":"YOUR_LOCKED_USER",
+  "errorUser":"YOUR_ERROR_USER",
+  "password":"YOUR_PASSWORD",
+  "firstName":"Jane",
+  "lastName":"Doe",
+  "postalCode":"1000"
+}

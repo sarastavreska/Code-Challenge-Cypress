@@ -27,8 +27,7 @@ describe('products tests', function(){
         cy.url().should('include','inventory.html');
 
         inventoryPage.productNames.eq(3).scrollIntoView();
-        inventoryPage.addToCartButtons.eq(3).click();
-        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart');
+        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart').click();
         inventoryPage.productNames.eq(3).invoke('text').then((name) => {
         cy.log('Product name: ' + name.trim());
             });
@@ -38,7 +37,7 @@ describe('products tests', function(){
             });
 
          inventoryPage.productDescriptions.eq(3).invoke('text').then((description) => {
-        cy.log('Product description: ' + description.trim());
+         cy.log('Product description: ' + description.trim());
             });
 
         inventoryPage.removeProductButton.first().should('be.visible').and('have.text','Remove');
@@ -49,6 +48,40 @@ describe('products tests', function(){
 
 
 })
+
+            it('add the first product then unadd and verify button add to cart',function(){
+
+            cy.fixture('dataInputs',).then((data :LoginData) =>{
+            cy.visit(data.baseURL);
+            cy.login(data.standardUser,data.password);
+        })
+        cy.url().should('include','inventory.html');
+
+        inventoryPage.productNames.eq(3).scrollIntoView();
+        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart').click();
+        inventoryPage.productNames.eq(3).invoke('text').then((name) => {
+        cy.log('Product name: ' + name.trim());
+            });
+
+        inventoryPage.priceOfTheProducts.eq(3).invoke('text').then((price) => {
+        cy.log('Product price: ' + price.trim());
+            });
+
+         inventoryPage.productDescriptions.eq(3).invoke('text').then((description) => {
+         cy.log('Product description: ' + description.trim());
+            });
+
+        inventoryPage.removeProductButton.first().should('be.visible').and('have.text','Remove');
+        inventoryPage.shoppingCartquantity.invoke('text').then((quantity)=>{
+            cy.log("The quantity in the cart is: " +quantity);
+        })
+
+        inventoryPage.removeProductButton.should('be.visible').and('have.text','Remove').click();
+         inventoryPage.shoppingCartquantity.should('not.exist');
+    
+
+
+            })
     
     })
 

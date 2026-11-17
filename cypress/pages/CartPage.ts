@@ -1,13 +1,13 @@
 export class CartPage {
     
     get productNamesInCart(){
-        return cy.get('.inventory_item_name');
+        return cy.get('[data-test="inventory-item-name"]');
     }
      get productDescriptionsInCart(){
-        return cy.get('.inventory_item_desc');
+        return cy.get('[data-test="inventory-item-desc"]');
     }
     get priceOfTheProductsInCart(){
-        return cy.get('.inventory_item_price');
+        return cy.get('[data-test="inventory-item-price"]');
     }
     get removeProductButtonInCart (){
 
@@ -15,15 +15,15 @@ export class CartPage {
     }
     get continueShoppingButton (){
 
-        return cy.get('#continue-shopping');
+        return cy.get('[data-test="continue-shopping"]');
     }
     get checkoutButton(){
-        return cy.get('#checkout'); 
+        return cy.get('[data-test="checkout"]'); 
 
     }
     get shoppingCartquantity (){
 
-        return cy.get(".shopping_cart_badge");
+        return cy.get('[data-test="shopping-cart-badge"]');
     }
     
 

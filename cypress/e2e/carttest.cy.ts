@@ -24,8 +24,7 @@ describe('cart tests', function(){
         cy.url().should('include','inventory.html');
 
         inventoryPage.productNames.eq(3).scrollIntoView();
-        inventoryPage.addToCartButtons.eq(3).click();
-        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart');
+        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart').click();
         inventoryPage.productNames.eq(3).invoke('text').then((name) => {
         cy.log('Product name: ' + name.trim());
             });
@@ -51,15 +50,14 @@ describe('cart tests', function(){
 
         it('add the first product, open cart and remove the added product',function(){
 
-            cy.fixture('dataInputs',).then((data :LoginData) =>{
+              cy.fixture('dataInputs',).then((data :LoginData) =>{
               cy.visit(data.baseURL);
               cy.login(data.standardUser,data.password);
         })
         cy.url().should('include','inventory.html');
 
         inventoryPage.productNames.first().scrollIntoView();
-        inventoryPage.addToCartButtons.first().click();
-        inventoryPage.addToCartButtons.first().should('have.text','Add to cart');
+        inventoryPage.addToCartButtons.first().should('have.text','Add to cart').click();
         inventoryPage.productNames.first().invoke('text').then((name) => {
         cy.log('Product name: ' + name.trim());
             });
@@ -79,11 +77,11 @@ describe('cart tests', function(){
 
         inventoryPage.cartButton.click();
         cy.url().should('include','cart.html');
-        cartPage.removeProductButtonInCart.first().should('be.visible').and('have.text',"Remove");        
-        cartPage.removeProductButtonInCart.first().click();
+        cartPage.removeProductButtonInCart.first().should('be.visible').and('have.text',"Remove").click();        
         cartPage.shoppingCartquantity.should('not.exist');
 
         })
+        
         it('add product to cart, open cart, remove product and click continue shopping',function(){
               cy.fixture('dataInputs',).then((data :LoginData) =>{
               cy.visit(data.baseURL);
@@ -92,8 +90,7 @@ describe('cart tests', function(){
         cy.url().should('include','inventory.html');
 
         inventoryPage.productNames.eq(3).scrollIntoView();
-        inventoryPage.addToCartButtons.eq(3).click();
-        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart');
+        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart').click();
         inventoryPage.productNames.eq(3).invoke('text').then((name) => {
         cy.log('Product name: ' + name.trim());
             });
@@ -113,7 +110,7 @@ describe('cart tests', function(){
 
         inventoryPage.cartButton.click();
         cy.url().should('include','cart.html');
-        cartPage.continueShoppingButton.click();
+        cartPage.continueShoppingButton.should('be.visible').and('have.text','Checkout').click();
         cy.url().should('include','inventory.html');
 
         inventoryPage.shoppingCartquantity.invoke('text').then((quantity)=>{

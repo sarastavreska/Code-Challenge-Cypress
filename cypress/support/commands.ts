@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
-import { CheckoutPageStepOne } from "../pages/CheckoutPageStepOne";
+import { CheckoutPage } from "../pages/CheckoutPage";
 import { LoginPage } from "../pages/LoginPage";
 
-const checkoutPageStepOne = new CheckoutPageStepOne();
+const checkoutPage = new CheckoutPage();
 const loginPage= new LoginPage();
 
 // ***********************************************
@@ -62,9 +62,9 @@ Cypress.Commands.add('login',(username:string, password:string)=>{
 
 Cypress.Commands.add('fillStepOneCheckout',(firstName:string, lastName:string,postalCode:string) =>{
 
-  checkoutPageStepOne.firstNameInput.type(firstName);
-  checkoutPageStepOne.lastNameInput.type(lastName);
-  checkoutPageStepOne.postalCodeInput.type(postalCode);
+  checkoutPage.firstNameInput.type(firstName);
+  checkoutPage.lastNameInput.type(lastName);
+  checkoutPage.postalCodeInput.type(postalCode);
 })
 
 export{};
