@@ -23,7 +23,7 @@ describe('login tests', function(){
                 cy.fixture('dataInputs',).then((data :LoginData) =>{
                 cy.visit(data.baseURL);
                 cy.login(data.standardUser,data.password);
-                cy.url().should('include','www.saucedemo.com/');
+                cy.url().should('include','inventory.html');
 
 
     });
@@ -48,7 +48,7 @@ describe('login tests', function(){
             cy.visit(data.baseURL);
             loginPage.password.type(data.password);
             loginPage.loginButton.click();            
-            loginPage.requiredErrorMessage.should('contain.text',"Epic sadface: Username is required");
+            loginPage.requiredErrorMessage.should('have.text',"Epic sadface: Username is required");
             loginPage.requiredErrorMessage.invoke('text').then((text)=>{
             cy.log(text);
     });
@@ -61,7 +61,7 @@ describe('login tests', function(){
             cy.fixture('dataInputs').then((data:LoginData)=>{
             cy.visit(data.baseURL);
             cy.login(data.lockedUser,data.password);            
-            loginPage.requiredErrorMessage.should('contain.text',"Epic sadface: Username and password do not match any user in this service");
+            loginPage.requiredErrorMessage.should('have.text',"Epic sadface: Username and password do not match any user in this service");
             loginPage.requiredErrorMessage.invoke('text').then((text)=>{
             cy.log(text);    
             })

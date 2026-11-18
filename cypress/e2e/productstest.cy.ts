@@ -26,17 +26,17 @@ describe('products tests', function(){
         })
         cy.url().should('include','inventory.html');
 
-        inventoryPage.productNames.eq(3).scrollIntoView();
-        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart').click();
-        inventoryPage.productNames.eq(3).invoke('text').then((name) => {
+        inventoryPage.productNames.first().scrollIntoView();
+        inventoryPage.addToCartButtons.first().should('have.text','Add to cart').click();
+        inventoryPage.productNames.first().invoke('text').then((name) => {
         cy.log('Product name: ' + name.trim());
             });
 
-        inventoryPage.priceOfTheProducts.eq(3).invoke('text').then((price) => {
+        inventoryPage.priceOfTheProducts.first().invoke('text').then((price) => {
         cy.log('Product price: ' + price.trim());
             });
 
-         inventoryPage.productDescriptions.eq(3).invoke('text').then((description) => {
+         inventoryPage.productDescriptions.first().invoke('text').then((description) => {
          cy.log('Product description: ' + description.trim());
             });
 
@@ -57,17 +57,17 @@ describe('products tests', function(){
         })
         cy.url().should('include','inventory.html');
 
-        inventoryPage.productNames.eq(3).scrollIntoView();
-        inventoryPage.addToCartButtons.eq(3).should('have.text','Add to cart').click();
-        inventoryPage.productNames.eq(3).invoke('text').then((name) => {
+        inventoryPage.productNames.first().scrollIntoView();
+        inventoryPage.addToCartButtons.first().should('have.text','Add to cart').click();
+        inventoryPage.productNames.first().invoke('text').then((name) => {
         cy.log('Product name: ' + name.trim());
             });
 
-        inventoryPage.priceOfTheProducts.eq(3).invoke('text').then((price) => {
+        inventoryPage.priceOfTheProducts.first().invoke('text').then((price) => {
         cy.log('Product price: ' + price.trim());
             });
 
-         inventoryPage.productDescriptions.eq(3).invoke('text').then((description) => {
+         inventoryPage.productDescriptions.first().invoke('text').then((description) => {
          cy.log('Product description: ' + description.trim());
             });
 

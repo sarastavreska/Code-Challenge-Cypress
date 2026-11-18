@@ -16,7 +16,7 @@ describe('cart tests', function(){
         const inventoryPage = new InventoryPage();
         const cartPage =new CartPage ();
 
-    it('standard user add a product and open cart', function(){
+    it('standard user, add a product to cart and open cart', function(){
               cy.fixture('dataInputs',).then((data :LoginData) =>{
               cy.visit(data.baseURL);
               cy.login(data.standardUser,data.password);
@@ -81,8 +81,9 @@ describe('cart tests', function(){
         cartPage.shoppingCartquantity.should('not.exist');
 
         })
-        
-        it('add product to cart, open cart, remove product and click continue shopping',function(){
+
+        it('add product to cart, open cart, remove product from cart and click continue shopping',
+            function(){
               cy.fixture('dataInputs',).then((data :LoginData) =>{
               cy.visit(data.baseURL);
               cy.login(data.standardUser,data.password);
@@ -110,12 +111,11 @@ describe('cart tests', function(){
 
         inventoryPage.cartButton.click();
         cy.url().should('include','cart.html');
-        cartPage.continueShoppingButton.should('be.visible').and('have.text','Checkout').click();
+        cartPage.removeProductButtonInCart.first().should('be.visible').and('have.text','Remove').click();
+        cartPage.continueShoppingButton.should('be.visible').and('have.text','Continue Shopping').click();
         cy.url().should('include','inventory.html');
+        inventoryPage.shoppingCartquantity.should('not.exist');
 
-        inventoryPage.shoppingCartquantity.invoke('text').then((quantity)=>{
-            cy.log("The quantity in the cart is: " +quantity);
-        })
 
 
         })
